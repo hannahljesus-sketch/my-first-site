@@ -1,9 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-  <title>My First Site</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>记忆力测试游戏</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: 50px auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello! This is my website 🚀</h1>
+
+<div class="card">
+  <h2>记忆力测试游戏</h2>
+  <p id="number"></p>
+  <input id="answer" placeholder="输入你记住的数字" />
+  <br><br>
+  <button onclick="startGame()">开始游戏</button>
+  <button onclick="checkAnswer()">提交答案</button>
+  <p id="result"></p>
+</div>
+
+<script>
+let currentNumber = "";
+
+function startGame() {
+  currentNumber = Math.floor(Math.random() * 9000 + 1000).toString();
+  document.getElementById("number").innerText = currentNumber;
+
+  setTimeout(() => {
+    document.getElementById("number").innerText = "???";
+  }, 2000);
+}
+
+function checkAnswer() {
+  let userAnswer = document.getElementById("answer").value;
+  if (userAnswer === currentNumber) {
+    document.getElementById("result").innerText = "正确！🎉";
+  } else {
+    document.getElementById("result").innerText = "错误，答案是 " + currentNumber;
+  }
+}
+</script>
+
 </body>
 </html>
